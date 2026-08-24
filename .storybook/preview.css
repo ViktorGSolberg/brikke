@@ -1,0 +1,17 @@
+/*
+ * Storybook-only chrome. Brikke's own stylesheet ships without Preflight, so
+ * the canvas supplies the minimal reset a consuming app would already have.
+ */
+@import '../src/styles/index.css';
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  background: var(--color-bk-surface);
+  color: var(--color-bk-fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

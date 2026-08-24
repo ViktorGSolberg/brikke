@@ -1,0 +1,75 @@
+{
+  "name": "brikke",
+  "version": "0.0.1",
+  "description": "Brikke \u2014 a React component library built on Base UI and Tailwind, for SPA and SSR.",
+  "license": "MIT",
+  "author": "Viktor G. Solberg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViktorGSolberg/brikke.git"
+  },
+  "homepage": "https://github.com/ViktorGSolberg/brikke#readme",
+  "bugs": {
+    "url": "https://github.com/ViktorGSolberg/brikke/issues"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "design-system",
+    "base-ui",
+    "tailwindcss",
+    "ssr"
+  ],
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "pnpm run build:js && pnpm run build:css",
+    "build:js": "tsup",
+    "build:css": "tailwindcss -i src/styles/index.css -o dist/styles.css --minify",
+    "typecheck": "tsc --noEmit",
+    "test:ssr": "node scripts/ssr-smoke.mjs",
+    "verify": "pnpm run typecheck && pnpm run build && pnpm run test:ssr",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build",
+    "prepare": "pnpm run build"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.5.10",
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "storybook": "^10.5.10",
+    "tailwindcss": "^4.3.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.0",
+    "vite": "^8.2.2"
+  },
+  "packageManager": "pnpm@10.27.0"
+}

@@ -1,0 +1,16 @@
+/*
+ * Brikke's shipped stylesheet.
+ *
+ * Deliberately NOT `@import "tailwindcss"` — that pulls in Preflight, and a
+ * library has no business resetting a consuming app's global styles. We take
+ * the theme and utility layers only.
+ */
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@import './theme.css';
+
+/* Scan Brikke's own components so the build emits exactly the utilities used. */
+@source '../**/*.{ts,tsx}';
