@@ -36,15 +36,15 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "build": "pnpm run build:js && pnpm run build:css",
+    "build": "npm run build:js && npm run build:css",
     "build:js": "tsup",
     "build:css": "tailwindcss -i src/styles/index.css -o dist/styles.css --minify",
     "typecheck": "tsc --noEmit",
     "test:ssr": "node scripts/ssr-smoke.mjs",
-    "verify": "pnpm run typecheck && pnpm run build && pnpm run test:ssr",
+    "verify": "npm run typecheck && npm run build && npm run test:ssr",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
-    "prepare": "pnpm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
