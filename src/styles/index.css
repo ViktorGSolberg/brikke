@@ -4,7 +4,16 @@
  * Deliberately NOT `@import "tailwindcss"` — that pulls in Preflight, and a
  * library has no business resetting a consuming app's global styles. We take
  * the theme and utility layers only.
+ *
+ * The font import is the one line that reaches off-origin. Organic's two faces
+ * are the system's display voice and body voice, so components reference them
+ * by token rather than inheriting whatever the host app happens to set. If you
+ * would rather keep the package fully self-contained, delete this line, vendor
+ * the two woff2 files, and declare them with @font-face here instead — the
+ * `--font-bk-*` tokens do not change either way.
  */
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&display=swap');
+
 @layer theme, base, components, utilities;
 
 @import 'tailwindcss/theme.css' layer(theme);

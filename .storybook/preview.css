@@ -4,14 +4,12 @@
  */
 @import '../src/styles/index.css';
 
-:root {
-  color-scheme: light dark;
-}
-
 body {
   margin: 0;
-  padding: 1.5rem;
-  background: var(--color-bk-surface);
+  padding: 2rem;
+  /* Organic's ground, not the control surface — components need to sit ON the
+     page colour for the sand fills to read as fills. */
+  background: var(--color-bk-page);
   color: var(--color-bk-fg);
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-bk-sans);
 }
