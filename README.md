@@ -10,53 +10,46 @@ import { Button, Field } from 'brikke';
 import 'brikke/styles.css'; // once, at your app root
 ```
 
-The stylesheet is prebuilt and self-contained — consuming apps do **not** need to
-add Brikke to a Tailwind `content`/`@source` config, and do not need Tailwind at all.
+The stylesheet is prebuilt and self-contained: consuming apps do **not** need to
+add Brikke to a Tailwind `content`/`@source` config, do not need Tailwind at all,
+and the package makes no network request — the two typefaces ship with it.
+
+Brikke installs as a git dependency rather than from npm:
+
+```jsonc
+"brikke": "github:ViktorGSolberg/brikke#v0.0.2"
+```
+
+Installing runs a `prepare` build on your machine, which **requires pnpm on your
+PATH**.
+
+## Theming
+
+Every token is a plain CSS variable on `:root`, namespaced `bk-` so it can't
+collide with your own Tailwind theme. Rebrand by redefining them — no rebuild of
+this package:
+
+```css
+:root {
+  --color-bk-primary: #3f6f52;
+}
+```
+
+Dark mode is opt-in via `.dark` or `[data-theme="dark"]` on the document element.
 
 ## Scripts
 
 | Command | What it does |
 | --- | --- |
 | `pnpm storybook` | Component workshop on :6006 |
-| `pnpm build` | Emit `dist/index.js`, `dist/index.d.ts`, `dist/styles.css` |
+| `pnpm build` | Emit `dist/index.js`, `dist/index.d.ts`, `dist/styles.css`, `dist/fonts/` |
 | `pnpm typecheck` | `tsc --noEmit` across src, stories, and config |
 | `pnpm test:ssr` | Render the built package in Node with no DOM |
-| `pnpm verify` | All of the above — run before publishing |
+| `pnpm verify` | All of the above — run before tagging a release |
 
-## Decisions worth knowing
+## Contributing
 
-**Base UI directly, not shadcn/ui.** shadcn/ui made Base UI its default primitive in
-July 2026, so the two are the same stack at different layers. Brikke ships as a
-versioned package rather than copy-in source, so consuming apps upgrade through one
-lever instead of drifting per-app copies.
-
-**React only.** Base UI is React-only by construction. If Vue or Svelte ever become
-real, the migration target is Ark UI — one Zag.js state machine drives every adapter,
-so parity is structural instead of hand-maintained. Nothing here is named `*-react`,
-so a `brikke-react` / `brikke-vue` split stays available.
-
-**Zero-runtime CSS.** This is the load-bearing choice, not the choice of primitive —
-every headless option is SSR-safe on React 19. Runtime CSS-in-JS (Emotion, and so
-MUI/Chakra) is what degrades under streaming SSR. Tailwind compiles away entirely.
-
-**No Preflight.** `src/styles/index.css` imports Tailwind's theme and utility layers
-only. A library has no business resetting a consuming app's global styles.
-
-**Tokens are namespaced `bk-`.** Brikke's stylesheet coexists with a consuming app's
-own Tailwind build, so unprefixed `bg-primary` would collide. Tokens are plain CSS
-variables on `:root`, so an app rebrands by redefining `--color-bk-primary` — no
-rebuild of this package required.
-
-**The bundle is one client module.** `tsup.config.ts` prepends `"use client"` and
-disables rollup treeshaking, because that pass strips module-level directives.
-Consumers still treeshake via ESM output plus `sideEffects`. The tradeoff: a purely
-presentational component here cannot be imported into a React Server Component.
-Splitting server-safe entry points is the fix if that ever bites.
-
-## Adding a component
-
-1. `src/components/<name>/<name>.tsx` — wrap the Base UI part, style with `cn()`.
-2. Narrow `className` to `string` via the local `Styled<T>` helper so `cn()` merges
-   predictably; express state-dependent styling with `data-*` variants.
-3. Add `<name>.stories.tsx`, export from `index.ts`, re-export in `src/index.ts`.
-4. `pnpm verify`.
+Start at [AGENTS.md](AGENTS.md), which links to the detailed guides in
+[`docs/`](docs/) — [architecture](docs/architecture.md),
+[authoring components](docs/components.md), [styling and tokens](docs/styling.md),
+[testing](docs/testing.md), and [releasing](docs/releasing.md).

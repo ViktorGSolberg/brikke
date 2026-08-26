@@ -1,7 +1,7 @@
 {
   "name": "brikke",
   "version": "0.0.2",
-  "description": "Brikke \u2014 a React component library built on Base UI and Tailwind, for SPA and SSR.",
+  "description": "Brikke — a React component library built on Base UI and Tailwind, for SPA and SSR.",
   "license": "MIT",
   "author": "Viktor G. Solberg",
   "repository": {
@@ -36,15 +36,16 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "build": "npm run build:js && npm run build:css",
+    "build": "pnpm run build:js && pnpm run build:css && pnpm run build:fonts",
     "build:js": "tsup",
     "build:css": "tailwindcss -i src/styles/index.css -o dist/styles.css --minify",
+    "build:fonts": "node scripts/copy-fonts.mjs",
     "typecheck": "tsc --noEmit",
     "test:ssr": "node scripts/ssr-smoke.mjs",
-    "verify": "npm run typecheck && npm run build && npm run test:ssr",
+    "verify": "pnpm run typecheck && pnpm run build && pnpm run test:ssr",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
-    "prepare": "npm run build"
+    "prepare": "pnpm run build"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
