@@ -6,7 +6,10 @@ const meta = {
   component: Button,
   args: { children: 'Continue' },
   argTypes: {
-    variant: { control: 'select', options: ['primary', 'secondary', 'ghost', 'danger'] },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'ghost', 'sage', 'danger'],
+    },
     size: { control: 'select', options: ['sm', 'md', 'lg'] },
   },
 } satisfies Meta<typeof Button>;
@@ -17,6 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {};
 export const Secondary: Story = { args: { variant: 'secondary' } };
 export const Ghost: Story = { args: { variant: 'ghost' } };
+export const Sage: Story = { args: { variant: 'sage', children: 'Plant a seed' } };
 export const Danger: Story = { args: { variant: 'danger', children: 'Delete project' } };
 export const Disabled: Story = { args: { disabled: true } };
 
@@ -25,7 +29,7 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-4">
       {(['sm', 'md', 'lg'] as const).map((size) => (
         <div key={size} className="flex items-center gap-3">
-          {(['primary', 'secondary', 'ghost', 'danger'] as const).map((variant) => (
+          {(['primary', 'secondary', 'ghost', 'sage', 'danger'] as const).map((variant) => (
             <Button key={variant} variant={variant} size={size}>
               {variant}
             </Button>

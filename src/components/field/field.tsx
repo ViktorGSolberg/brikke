@@ -11,10 +11,13 @@ import { cn } from '../../lib/cn';
 type Styled<T> = Omit<T, 'className'> & { className?: string };
 
 export const inputClassName = cn(
-  'h-10 w-full rounded-bk border border-bk-border bg-bk-surface px-3 text-sm text-bk-fg',
+  // Organic: pill radius, sand fill, and the accent as the caret.
+  'h-10 w-full rounded-bk-pill border border-bk-border bg-bk-surface px-3.5',
+  'font-bk-sans text-sm text-bk-fg caret-bk-primary',
   'placeholder:text-bk-fg-muted outline-none transition-colors',
-  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bk-ring',
-  'disabled:cursor-not-allowed disabled:opacity-50',
+  'hover:border-bk-fg/45',
+  'focus-visible:border-bk-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bk-ring',
+  'disabled:cursor-not-allowed disabled:opacity-45',
   'data-[invalid]:border-bk-danger data-[invalid]:focus-visible:outline-bk-danger',
 );
 
@@ -36,7 +39,8 @@ export type FieldLabelProps = Styled<React.ComponentProps<typeof BaseField.Label
 function FieldLabel({ className, ...props }: FieldLabelProps) {
   return (
     <BaseField.Label
-      className={cn('text-sm font-medium text-bk-fg', className)}
+      // Organic's field label is quieter than the control it names.
+      className={cn('font-bk-sans text-xs text-bk-fg-muted', className)}
       {...props}
     />
   );
@@ -55,7 +59,7 @@ export type FieldDescriptionProps = Styled<
 function FieldDescription({ className, ...props }: FieldDescriptionProps) {
   return (
     <BaseField.Description
-      className={cn('text-sm text-bk-fg-muted', className)}
+      className={cn('font-bk-sans text-[13px] text-bk-fg-muted', className)}
       {...props}
     />
   );
@@ -65,7 +69,10 @@ export type FieldErrorProps = Styled<React.ComponentProps<typeof BaseField.Error
 
 function FieldError({ className, ...props }: FieldErrorProps) {
   return (
-    <BaseField.Error className={cn('text-sm text-bk-danger', className)} {...props} />
+    <BaseField.Error
+      className={cn('font-bk-sans text-[13px] text-bk-danger', className)}
+      {...props}
+    />
   );
 }
 

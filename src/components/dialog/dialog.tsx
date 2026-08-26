@@ -28,7 +28,7 @@ export type DialogViewportProps = Styled<
 function DialogViewport({ className, ...props }: DialogViewportProps) {
   return (
     <BaseDialog.Viewport
-      className={cn('fixed inset-0 grid place-items-center overflow-y-auto p-4', className)}
+      className={cn('fixed inset-0 grid place-items-center overflow-y-auto p-5', className)}
       {...props}
     />
   );
@@ -39,9 +39,10 @@ export type DialogPopupProps = Styled<React.ComponentProps<typeof BaseDialog.Pop
 function DialogPopup({ className, ...props }: DialogPopupProps) {
   return (
     <BaseDialog.Popup
+      // Organic's dialog is over-rounded and shadow-only — no hairline border.
       className={cn(
-        'w-full max-w-md rounded-bk border border-bk-border bg-bk-surface-raised p-6',
-        'text-bk-fg shadow-lg outline-none',
+        'w-full max-w-md rounded-bk-lg bg-bk-surface-raised p-7',
+        'font-bk-sans text-bk-fg shadow-bk-lg outline-none',
         'transition-[opacity,transform] duration-200',
         'data-[starting-style]:scale-95 data-[starting-style]:opacity-0',
         'data-[ending-style]:scale-95 data-[ending-style]:opacity-0',
@@ -57,7 +58,10 @@ export type DialogTitleProps = Styled<React.ComponentProps<typeof BaseDialog.Tit
 function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
     <BaseDialog.Title
-      className={cn('text-lg font-semibold text-bk-fg', className)}
+      className={cn(
+        'font-bk-display text-xl leading-tight font-normal tracking-[-0.015em] text-bk-fg',
+        className,
+      )}
       {...props}
     />
   );
@@ -70,7 +74,7 @@ export type DialogDescriptionProps = Styled<
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
   return (
     <BaseDialog.Description
-      className={cn('mt-2 text-sm text-bk-fg-muted', className)}
+      className={cn('mt-2.5 text-sm leading-relaxed text-bk-fg-muted', className)}
       {...props}
     />
   );
