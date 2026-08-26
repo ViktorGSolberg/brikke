@@ -1,6 +1,6 @@
 {
   "name": "brikke",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Brikke \u2014 a React component library built on Base UI and Tailwind, for SPA and SSR.",
   "license": "MIT",
   "author": "Viktor G. Solberg",
