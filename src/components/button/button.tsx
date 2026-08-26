@@ -7,6 +7,11 @@ export const buttonVariants = cva(
     // Organic: controls are pills, and the display face carries actions.
     'inline-flex shrink-0 items-center justify-center gap-2 rounded-bk-pill',
     'border border-transparent font-bk-display font-normal leading-tight',
+    // Brikke ships without Preflight, so nothing zeroes the UA's
+    // `background-color: buttonface` — without this, `secondary` and `ghost`
+    // render on the browser's grey instead of the page. Variants that paint
+    // their own background override this via twMerge.
+    'bg-transparent',
     'transition-colors outline-none select-none',
     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bk-ring',
     'disabled:pointer-events-none disabled:opacity-45',
