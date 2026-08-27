@@ -17,7 +17,7 @@ and the package makes no network request — the two typefaces ship with it.
 Brikke installs as a git dependency rather than from npm:
 
 ```jsonc
-"brikke": "github:ViktorGSolberg/brikke#v0.0.2"
+"brikke": "github:ViktorGSolberg/brikke#v0.0.3"
 ```
 
 Installing runs a `prepare` build on your machine, which **requires pnpm on your

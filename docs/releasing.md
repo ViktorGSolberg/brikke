@@ -4,7 +4,7 @@ Brikke is consumed as a **git dependency**, not from npm. `private: true` in
 `package.json` enforces that by blocking an accidental publish.
 
 ```jsonc
-"brikke": "github:ViktorGSolberg/brikke#v0.0.2"
+"brikke": "github:ViktorGSolberg/brikke#v0.0.3"
 ```
 
 ## Cutting a version
